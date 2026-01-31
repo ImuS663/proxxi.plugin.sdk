@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+
+    <PackageId>Proxxi.Plugin.Sdk</PackageId>
+    <Authors>ImuS663</Authors>
+    <Description>SDK for building Proxxi proxy source plugins</Description>
+    <PackageTags>proxxi;proxy;plugin;sdk</PackageTags>
+    <RepositoryUrl>https://github.com/ImuS663/proxxi.plugin.sdk</RepositoryUrl>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+  </PropertyGroup>
+
+</Project>
