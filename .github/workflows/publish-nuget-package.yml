@@ -35,5 +35,8 @@ jobs:
       - name: Pack
         run: dotnet pack -c Release -o ./out /p:Version=${{ steps.gitversion.outputs.nuGetVersion }}
 
-      - name: Publish to NuGet.org
+      - name: Publish packages to NuGet.org
         run: dotnet nuget push ./out/*.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json --skip-duplicate
+
+      - name: Publish symbol packages to NuGet.org
+        run: dotnet nuget push ./out/*.snupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json --skip-duplicate
