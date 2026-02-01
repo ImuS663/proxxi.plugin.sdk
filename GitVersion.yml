@@ -1,0 +1,17 @@
+mode: ContinuousDelivery
+
+branches:
+  main:
+    regex: ^main$
+    increment: Minor
+    is-release-branch: true
+
+  feature:
+    regex: ^feature[/-]
+    increment: Minor
+    tag: alpha
+
+  bugfix:
+    regex: ^(bugfix|fix)[/-]
+    increment: Patch
+    tag: beta

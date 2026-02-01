@@ -12,6 +12,11 @@
     <RepositoryUrl>https://github.com/ImuS663/proxxi.plugin.sdk</RepositoryUrl>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
 
+    <Version>$(GitVersion_NuGetVersion)</Version>
+    <AssemblyVersion>$(GitVersion_AssemblySemVer)</AssemblyVersion>
+    <FileVersion>$(GitVersion_AssemblySemFileVer)</FileVersion>
+    <InformationalVersion>$(GitVersion_InformationalVersion)</InformationalVersion>
+
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
