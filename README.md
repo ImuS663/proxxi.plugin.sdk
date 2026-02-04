@@ -1,6 +1,6 @@
 # Proxxi.Plugin.Sdk
 
-SDK for building **proxy source plugins** for Proxxi.
+SDK for building **proxy source plugins** for `proxxi`.
 
 - **Target framework:** `net10.0`
 - **Goal:** a small, stable contract for implementations that return proxies either as a batch or as a stream.
@@ -40,8 +40,8 @@ Modify it to:
 
 A plugin implements one of the following source shapes:
 
-- `IBatchProxySource` — returns all proxies in one go: `Task<IEnumerable<Proxy>> FetchAsync(...)`
-- `IStreamProxySource` — returns proxies as an async stream: `IAsyncEnumerable<Proxy> FetchAsync(...)`
+- `IBatchProxySource` – returns all proxies in one go: `Task<IEnumerable<Proxy>> FetchAsync(...)`
+- `IStreamProxySource` – returns proxies as an async stream: `IAsyncEnumerable<Proxy> FetchAsync(...)`
 
 Both derive from `IProxySource` and share the same lifecycle:
 
@@ -55,10 +55,10 @@ Both derive from `IProxySource` and share the same lifecycle:
 
 Represents an endpoint and optional authentication:
 
-- `Host` — hostname or IP
-- `Port` — port number
-- `Username` / `Password` — optional credentials
-- `Protocols` — flags describing supported proxy protocols
+- `Host` – hostname or IP
+- `Port` – port number
+- `Username` / `Password` – optional credentials
+- `Protocols` – flags describing supported proxy protocols
 
 ### `Protocols`
 
@@ -74,18 +74,18 @@ The SDK provides attributes to describe a source and its configuration parameter
 
 Annotates an implementation class:
 
-- `Id` — unique identifier in `<publisher>.<plugin-name>` format (lowercase, dot-separated)
-- `Name` — human-readable name
-- `Description` — optional description
-- `HideBatch` / `HideStream` — hint for consumers to hide a mode (metadata only; does not change runtime behavior)
+- `Id` – unique identifier in `<publisher>.<plugin-name>` format (lowercase, dot-separated)
+- `Name` – human-readable name
+- `Description` – optional description
+- `HideBatch` / `HideStream` – hint for consumers to hide a mode (metadata only; does not change runtime behavior)
 
 ### `ParameterProxySourceAttribute`
 
 Describes a configuration parameter (`AllowMultiple = true`):
 
-- `Name` — parameter key
-- `Description` — parameter description
-- `Required` — whether it is required
+- `Name` – parameter key
+- `Description` – parameter description
+- `Required` – whether it is required
 
 ## Example: Batch source
 
