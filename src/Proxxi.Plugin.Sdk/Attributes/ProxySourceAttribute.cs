@@ -20,11 +20,6 @@ public sealed class ProxySourceAttribute : Attribute
     public string Name { get; private init; }
 
     /// <summary>
-    /// Optional description of the proxy source. May contain details about usage, limits, or source details.
-    /// </summary>
-    public string? Description { get; init; }
-
-    /// <summary>
     /// When true, indicates the source implementation should be treated as NOT supporting batch-style fetches for
     /// UI/factory consumers.
     /// </summary>
