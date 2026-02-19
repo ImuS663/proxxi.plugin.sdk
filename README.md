@@ -68,7 +68,8 @@ A flags enum:
 
 ## Metadata via attributes
 
-The SDK provides attributes to describe a source and its configuration parameters (metadata used by UIs/factories/loaders):
+The SDK provides attributes to describe a source and its configuration parameters (metadata used by
+UIs/factories/loaders):
 
 ### `ProxySourceAttribute`
 
@@ -90,7 +91,8 @@ Describes a configuration parameter (`AllowMultiple = true`):
 ## Example: Batch source
 
 ```csharp
-[ProxySource("mypublisher.example-batch", "Example Batch Source", Description = "Demo batch source.")]
+[ProxySource("mypublisher.example-batch", "Example Batch Source")]
+[Description("Demo batch source.")]
 [ParameterProxySource("endpoint", "API URL to fetch proxies from", required: true)]
 [ParameterProxySource("timeoutSeconds", "Request timeout in seconds", required: false)]
 public sealed class ExampleBatchSource : IBatchProxySource
@@ -114,7 +116,8 @@ public sealed class ExampleBatchSource : IBatchProxySource
 ## Example: Stream source
 
 ```csharp
-[ProxySource("mypublisher.example-stream", "Example Stream Source", Description = "Demo stream source")]
+[ProxySource("mypublisher.example-stream", "Example Stream Source")]
+[Description("Demo stream source")]
 public sealed class ExampleStreamSource : IStreamProxySource
 {
     public Task InitializeAsync(IReadOnlyDictionary<string, string> parameters, CancellationToken cancellationToken = default)
@@ -137,7 +140,8 @@ public sealed class ExampleStreamSource : IStreamProxySource
 ## Example: Both sources
 
 ```csharp
-[ProxySource("mypublisher.example-source", "Example Source", Description = "Demo source")]
+[ProxySource("mypublisher.example-source", "Example Source")]
+[Description("Demo source")]
 public sealed class ExampleBothSource : IBatchProxySource, IStreamProxySource
 {
     public Task InitializeAsync(IReadOnlyDictionary<string, string> parameters, CancellationToken cancellationToken = default)
