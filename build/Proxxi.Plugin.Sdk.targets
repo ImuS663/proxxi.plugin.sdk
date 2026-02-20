@@ -1,0 +1,29 @@
+<Project>
+
+  <PropertyGroup>
+    <PluginSuffix>plugin</PluginSuffix>
+    <PluginPackageExtension>pxp</PluginPackageExtension>
+  </PropertyGroup>
+
+  <Target Name="RenameMainDll" AfterTargets="Publish">
+    <Move SourceFiles="$(PublishDir)$(AssemblyName).dll"
+          DestinationFiles="$(PublishDir)$(AssemblyName).$(PluginSuffix).dll" />
+
+    <Message Importance="high" Text="Renamed output to $(PublishDir)$(AssemblyName).$(PluginSuffix).dll" />
+  </Target>
+
+  <Target Name="ArchivePack" AfterTargets="RenameMainDll">
+    <Message Importance="high" Text="Archiving publish output to tar.gz..." />
+
+    <Exec Command="tar -czf &quot;$(PublishDir)../$(AssemblyName).$(PluginPackageExtension)&quot; -C &quot;$(PublishDir)&quot; ." />
+
+    <Message Importance="high" Text="Archive created at $(PublishDir)../$(AssemblyName).$(PluginPackageExtension)" />
+  </Target>
+
+  <Target Name="CleanupPublishDirectory" AfterTargets="ArchivePack">
+    <Message Importance="high" Text="Cleaning publish directory..." />
+    <RemoveDir Directories="$(PublishDir)" />
+    <Message Importance="high" Text="Publish directory removed." />
+  </Target>
+
+</Project>
