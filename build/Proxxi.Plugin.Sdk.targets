@@ -3,27 +3,37 @@
   <PropertyGroup>
     <PluginSuffix>plugin</PluginSuffix>
     <PluginPackageExtension>pxp</PluginPackageExtension>
+    <InternalDir>$(PublishDir)public/</InternalDir>
   </PropertyGroup>
 
-  <Target Name="RenameMainDll" AfterTargets="Publish">
+  <Target Name="PackPlugin" DependsOnTargets="RenameMainDll;PrepareInternalFolder;ArchivePack" />
+
+  <Target Name="RenameMainDll">
     <Move SourceFiles="$(PublishDir)$(AssemblyName).dll"
           DestinationFiles="$(PublishDir)$(AssemblyName).$(PluginSuffix).dll" />
 
     <Message Importance="high" Text="Renamed output to $(PublishDir)$(AssemblyName).$(PluginSuffix).dll" />
   </Target>
 
-  <Target Name="ArchivePack" AfterTargets="RenameMainDll">
-    <Message Importance="high" Text="Archiving publish output to tar.gz..." />
+  <Target Name="PrepareInternalFolder">
+    <Message Importance="high" Text="Organizing files into subfolder..." />
 
-    <Exec Command="tar -czf &quot;$(PublishDir)../$(AssemblyName).$(PluginPackageExtension)&quot; -C &quot;$(PublishDir)&quot; ." />
+    <MakeDir Directories="$(InternalDir)" />
 
-    <Message Importance="high" Text="Archive created at $(PublishDir)../$(AssemblyName).$(PluginPackageExtension)" />
+    <ItemGroup>
+      <FilesToMove Include="$(PublishDir)**\*.*" Exclude="$(InternalDir)**\*.*" />
+    </ItemGroup>
+
+    <Move SourceFiles="@(FilesToMove)"
+          DestinationFiles="@(FilesToMove->'$(InternalDir)%(RecursiveDir)%(Filename)%(Extension)')" />
   </Target>
 
-  <Target Name="CleanupPublishDirectory" AfterTargets="ArchivePack">
-    <Message Importance="high" Text="Cleaning publish directory..." />
-    <RemoveDir Directories="$(PublishDir)" />
-    <Message Importance="high" Text="Publish directory removed." />
+  <Target Name="ArchivePack">
+    <Message Importance="high" Text="Archiving publish output to tar.gz..." />
+
+    <Exec Command="tar -czf &quot;$(PublishDir)$(AssemblyName).$(PluginPackageExtension)&quot; -C &quot;$(PublishDir)public/&quot; ." />
+
+    <Message Importance="high" Text="Archive created at $(PublishDir)$(AssemblyName).$(PluginPackageExtension)" />
   </Target>
 
 </Project>

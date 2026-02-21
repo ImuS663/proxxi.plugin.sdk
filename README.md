@@ -36,6 +36,30 @@ Modify it to:
 </ItemGroup>
 ```
 
+## Publish
+
+```shell
+dotnet publish -c Release
+```
+
+To make sharing and storing your plugins easier, the SDK supports auto-packaging into a `.pxp` file.
+
+### .pxp File Format
+
+A `.pxp` file is a compressed **tar.gz** archive containing all the necessary assets, metadata, and compiled code for
+your plugin. This format ensures that your plugin remains lightweight and easy to distribute across different
+environments.
+
+### Auto Packaging
+
+When you are ready to release your plugin, you can use the built-in packaging targets:
+
+```shell
+dotnet public -c Release -t:PackPlugin
+```
+
+This will create a `.pxp` file in the `bin/Release` folder.
+
 ## Concepts
 
 A plugin implements one of the following source shapes:
