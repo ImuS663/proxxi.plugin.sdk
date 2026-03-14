@@ -7,7 +7,6 @@ public sealed class ProxySourceInitializationException : ProxySourceException
 {
     public ProxySourceInitializationException(string message) : base(message) { }
 
-    public ProxySourceInitializationException(string message, Exception innerException) : base(message, innerException)
-    {
-    }
+    public ProxySourceInitializationException(string message, Exception innerException) 
+        : base(message, innerException) { }
 }
